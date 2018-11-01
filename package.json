@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "command": "依赖",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1"
   },
   "scripts": {
+    "command": "npm可以执行的命令",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
