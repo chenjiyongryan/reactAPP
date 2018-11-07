@@ -1,3 +1,6 @@
+需要安装的：
+-在谷歌插件商店安装react和rudex开发工具
+
 
 1.expressJs是开发node项目的中间件框架
 

@@ -17,12 +17,19 @@ export function counter(state = 0, action) {
 }
 
 //action creator
-function addGUN() {
+function addGun() {
   return { type: ADD_GUN };
 }
 
-function removeGUN() {
+function removeGun() {
   return { type: REMOVE_GUN };
 }
+function addGunAsync() {
+  return dispatch=>{
+    setTimeout(()=>{
+      dispatch(addGun())
+    },3000)
+  }
+}
 
-export { addGUN, removeGUN };
+export { addGun, removeGun ,addGunAsync};

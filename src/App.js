@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { List,Button,NavBar, Icon } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile\.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import './App.css';
+import { connect } from "react-redux";
 
 // import lib from '@babel/code-frame';
 
@@ -29,6 +30,11 @@ class App extends Component {
 
     //这里写JSX语法，
     const store = this.props.store
+    const addGun = this.props.addGun
+    const removeGun = this.props.removeGun
+    const addGunAsync = this.props.addGunAsync
+    
+
     const boss = '李云龙'  //这里不能加逗号
     return (   //如果有多行标签，必须用括号包起，最外层是一个div，这似乎是固定写法
     <div className="parent">
@@ -36,9 +42,16 @@ class App extends Component {
         <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
         <Icon key="1" type="ellipsis" />,
       ]}></NavBar>
-      <p>独立团现在有机枪{store.getState()}把</p><input value='扩充装备' type="button" onClick={()=>{
-        store.dispatch({type:'add'});console.log('click')
-      }}/>
+      <p>独立团现在有机枪{store.getState()}把</p>
+      <Button  inline size="small" type="primary" onClick={()=>{
+        store.dispatch(addGun())
+      }}>扩充军备 </Button>
+      <Button  inline size="small" type="primary" onClick={()=>{
+        store.dispatch(addGunAsync())
+      }}>拖两天再给 </Button>
+      <Button  inline size="small" type="warning" onClick={()=>{
+        store.dispatch(removeGun())
+      }}>削减军备 </Button>
       <Button type="primary" onClick={this.changeNickName}>给他们起个外号</Button>
       <Children1 boss={this.state.boss}></Children1>  
       <Children2 boss="李大锤"></Children2>  
@@ -51,7 +64,7 @@ class App extends Component {
     })
   }
 }
-
+App = connect()(App) //装饰器
 //组件命名必须以大写开头，比如这个Children1
 class Children1 extends Component {
   //构造函数，这里是组建内部的state，初始化的时候就会创建，类似vue里的Data
